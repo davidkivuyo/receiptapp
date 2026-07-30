@@ -107,7 +107,12 @@
         .custom-shadow-l2 { shadow-[0px_4px_12px_rgba(21,101,192,0.08)] }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
     </style>
-</head>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
 <body class="bg-background text-on-surface mb-24">
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm flex items-center justify-between px-gutter w-full h-16">

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verify Receipt Details - Mineral Receipts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1565c0",
+                    "outline": "#727783",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-tint": "#005db7",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eff0f9",
+                    "primary-fixed": "#d6e3ff",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#a9c7ff",
+                    "background": "#f9f9ff",
+                    "tertiary-fixed": "#d6e5ef",
+                    "secondary": "#5d5f5f",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#424752",
+                    "surface-container-high": "#e7e8f0",
+                    "on-background": "#191c21",
+                    "surface": "#f9f9ff",
+                    "tertiary": "#425059",
+                    "on-secondary-fixed-variant": "#454747",
+                    "primary": "#004d99",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#191c21",
+                    "surface-container": "#ecedf6",
+                    "surface-variant": "#e1e2ea",
+                    "surface-container-low": "#f2f3fb",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-tertiary-container": "#d8e7f2",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e1e2ea",
+                    "on-secondary-container": "#616363",
+                    "on-primary-fixed-variant": "#00468c",
+                    "inverse-surface": "#2e3037",
+                    "tertiary-container": "#5a6871",
+                    "on-primary-fixed": "#001b3d",
+                    "on-primary-container": "#dae5ff",
+                    "secondary-container": "#dfe0e0",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-dim": "#d8dae2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "xl": "32px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "container-padding": "24px"
+            },
+            "fontFamily": {
+                    "section-title": ["DM Sans"],
+                    "headline-lg": ["DM Sans"],
+                    "body-md": ["DM Sans"],
+                    "headline-lg-mobile": ["DM Sans"],
+                    "label-md": ["DM Sans"],
+                    "caption": ["DM Sans"]
+            },
+            "fontSize": {
+                    "section-title": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'DM Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for professional look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c2c6d4; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #727783; }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm flex items-center justify-between px-gutter h-16">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high p-sm rounded-full transition-colors active:scale-95 duration-100" data-icon="menu">menu</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Mineral Receipts</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container overflow-hidden border-2 border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional business avatar of a mineral specialist, medium shot, wearing modern corporate attire, neutral background, high-end photography style with soft studio lighting and clean blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgvlkiR5bCdA77taVYLqJP3xBleXvkN8Mu7DUy1ZhKx8-Ha-1L5dtcfjiwDvB_Hm1aJxItAjqZIJ5be4RJdEDxuLXBzXrSrUbBIRaDY7VI_yTKylOeSn2HRTk6MFdOku3fqLmDNnEIY4SnFoT7FaQaocSG4qe4kxsZkPGgNpB_JD9zVBPNgcM2pCttyy7_j6lcCQB5iosQVnymHInFSMYuEZSwE3wu4p3iFEIJXzA28MQqwSdc6QVJ"/>
+</div>
+</div>
+</header>
+<!-- Navigation Drawer (Desktop Only) -->
+<aside class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-[280px] bg-surface-container-low flex-col py-lg z-40 border-r border-outline-variant/10">
+<nav class="flex flex-col h-full">
+<div class="flex items-center gap-md text-on-surface-variant px-lg py-md mb-xs mx-sm hover:bg-surface-variant rounded-full transition-all cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</div>
+<!-- Active State: New Receipt -->
+<div class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-full px-lg py-md mb-xs mx-sm active:opacity-80 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_notes</span>
+<span class="font-label-md text-label-md">New Receipt</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant px-lg py-md mb-xs mx-sm hover:bg-surface-variant rounded-full transition-all cursor-pointer">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Receipt History</span>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant px-lg py-md mb-xs mx-sm hover:bg-surface-variant rounded-full transition-all cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+<div class="mt-auto px-lg pt-lg border-t border-outline-variant/20">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container font-bold">MS</div>
+<div>
+<p class="font-label-md text-on-surface font-bold">Mineral Sales Pro</p>
+<p class="text-xs text-on-surface-variant">Voucher System A437</p>
+</div>
+</div>
+</div>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="mt-16 mb-20 md:ml-[280px] md:mb-0 p-gutter md:p-xl flex-1 max-w-5xl mx-auto w-full">
+<header class="mb-lg">
+<nav class="flex items-center gap-xs text-on-surface-variant mb-sm">
+<span class="text-caption">Drafts</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-caption">New Voucher</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-caption font-bold text-primary">Verification</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Verify Receipt Details</h2>
+<p class="font-body-md text-on-surface-variant mt-xs">Review the transaction data before final generation and export.</p>
+</header>
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Summary Card -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] overflow-hidden">
+<div class="bg-primary-container px-lg py-md flex items-center justify-between">
+<span class="text-on-primary-container font-section-title text-section-title">Summary Review</span>
+<span class="bg-primary-fixed text-on-primary-fixed text-[10px] px-sm py-1 rounded-full font-bold tracking-widest uppercase">Draft Mode</span>
+</div>
+<div class="p-lg space-y-md">
+<!-- Client Section -->
+<div>
+<h3 class="font-label-md text-primary mb-sm uppercase tracking-wider">Customer Information</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md bg-surface-container-low p-md rounded-lg">
+<div class="flex flex-col">
+<span class="text-caption text-outline">Customer Name</span>
+<span class="font-body-md font-bold">East African Trading Co.</span>
+</div>
+<div class="flex flex-col">
+<span class="text-caption text-outline">License Number</span>
+<span class="font-body-md font-bold">TZ-MIN-8842-X</span>
+</div>
+<div class="flex flex-col">
+<span class="text-caption text-outline">Phone Number</span>
+<span class="font-body-md font-bold">+255 744 555 123</span>
+</div>
+<div class="flex flex-col">
+<span class="text-caption text-outline">Location</span>
+<span class="font-body-md font-bold">Mbeya Region, Tanzania</span>
+</div>
+</div>
+</div>
+<!-- Mineral Items Table -->
+<div>
+<h3 class="font-label-md text-primary mb-sm uppercase tracking-wider">Mineral Line Items</h3>
+<div class="border border-outline-variant rounded-lg overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-high">
+<tr>
+<th class="px-md py-sm font-label-md text-on-surface-variant">Item</th>
+<th class="px-md py-sm font-label-md text-on-surface-variant">Grade</th>
+<th class="px-md py-sm font-label-md text-on-surface-variant">Weight</th>
+<th class="px-md py-sm font-label-md text-on-surface-variant text-right">Price (TZS)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-md py-md font-body-md">Rough Tanzanite</td>
+<td class="px-md py-md"><span class="bg-tertiary-fixed text-on-tertiary-fixed px-sm py-0.5 rounded text-[12px] font-bold">AAA</span></td>
+<td class="px-md py-md font-body-md">14.50 Carats</td>
+<td class="px-md py-md font-body-md text-right font-bold">4,250,000</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-md py-md font-body-md">Raw Gold Flakes</td>
+<td class="px-md py-md"><span class="bg-surface-variant text-on-surface-variant px-sm py-0.5 rounded text-[12px] font-bold">22K</span></td>
+<td class="px-md py-md font-body-md">250.00 Grams</td>
+<td class="px-md py-md font-body-md text-right font-bold">32,750,000</td>
+</tr>
+</tbody>
+<tfoot class="bg-surface-container-low border-t-2 border-outline-variant">
+<tr>
+<td class="px-md py-md font-section-title text-section-title text-right" colspan="3">Total Payable Amount</td>
+<td class="px-md py-md font-section-title text-section-title text-right text-primary">37,000,000</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<!-- Meta Info -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-md pt-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">calendar_today</span>
+<div class="flex flex-col">
+<span class="text-caption text-outline">Issue Date</span>
+<span class="font-label-md">Oct 24, 2023</span>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">payments</span>
+<div class="flex flex-col">
+<span class="text-caption text-outline">Payment Method</span>
+<span class="font-label-md">Bank Wire</span>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">fingerprint</span>
+<div class="flex flex-col">
+<span class="text-caption text-outline">Agent ID</span>
+<span class="font-label-md">REF-4429-MIN</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Card -->
+<div class="lg:col-span-4 sticky top-24">
+<div class="bg-surface-container-high rounded-xl p-lg shadow-sm border border-outline-variant/30">
+<div class="flex flex-col items-center text-center mb-lg">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<h4 class="font-section-title text-section-title mb-xs">Are all the details correct?</h4>
+<p class="font-body-md text-on-surface-variant">Please confirm that all data points match the physical manifest provided by the trader.</p>
+</div>
+<div class="space-y-sm">
+<button class="w-full h-[48px] bg-primary text-on-primary rounded-lg font-label-md flex items-center justify-center gap-sm hover:brightness-110 active:scale-95 transition-all shadow-md">
+<span class="material-symbols-outlined">print</span>
+                            Print Receipt
+                        </button>
+<button class="w-full h-[48px] border border-primary text-primary rounded-lg font-label-md flex items-center justify-center gap-sm hover:bg-primary-fixed/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined">edit</span>
+                            Back to Edit
+                        </button>
+</div>
+<div class="mt-lg p-md bg-surface-container-lowest rounded-lg border border-outline-variant/20">
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-tertiary">info</span>
+<p class="text-caption text-on-surface-variant">Finalizing this receipt will deduct items from the current inventory ledger and generate a unique tracking QR code.</p>
+</div>
+</div>
+</div>
+<!-- Visual Decoration - Geological Abstract -->
+<div class="mt-lg rounded-xl h-32 overflow-hidden relative group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A high-end, abstract close-up of mineral textures, showing crystalline structures of tanzanite and gold veins, macro photography with dramatic lighting, deep blue and metallic gold color palette, professional geological survey aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmvdEtxruEzcA8oDa3raBzv219rGJxQPPNLd6mcemDoHYJDvWczShWFghCQQwOjYNho6siaOrsEM6-ZnvCZEwlR7XHru_zddQHNxfXQ1aj_qQ7W1ajI8p7TTeSoSRb01AH4XDQJOCb9MIbDVggVlQxLfp-agICd0R28Chy8ORvp21h3FrPa0ktnDf1W3Ahsnwrv39pWEXY_eQjYL2TMHniZVFmEqVV7FqOFNOe6ZI_55_82HQLzW4l"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-md">
+<span class="text-white text-[10px] font-bold uppercase tracking-widest opacity-80">Mineral Verification System v2.0</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-sm pb-safe bg-surface-container z-50 rounded-t-xl shadow-lg">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-gutter py-xs hover:text-primary transition-colors">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<!-- Active State: New -->
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-gutter py-xs active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-label-md text-label-md">New</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-gutter py-xs hover:text-primary transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-gutter py-xs hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction for feedback
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const text = this.innerText;
+                if (text.includes('Print')) {
+                    const originalContent = this.innerHTML;
+                    this.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Processing...';
+                    this.disabled = true;
+                    setTimeout(() => {
+                        this.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Generated!';
+                        setTimeout(() => {
+                            this.innerHTML = originalContent;
+                            this.disabled = false;
+                        }, 2000);
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+</body></html>
