@@ -1,0 +1,377 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Receipt History - Mineral Receipts</title>
+<!-- Google Fonts: DM Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1565c0",
+                    "outline": "#727783",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-tint": "#005db7",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eff0f9",
+                    "primary-fixed": "#d6e3ff",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#a9c7ff",
+                    "background": "#f9f9ff",
+                    "tertiary-fixed": "#d6e5ef",
+                    "secondary": "#5d5f5f",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#424752",
+                    "surface-container-high": "#e7e8f0",
+                    "on-background": "#191c21",
+                    "surface": "#f9f9ff",
+                    "tertiary": "#425059",
+                    "on-secondary-fixed-variant": "#454747",
+                    "primary": "#004d99",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#191c21",
+                    "surface-container": "#ecedf6",
+                    "surface-variant": "#e1e2ea",
+                    "surface-container-low": "#f2f3fb",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "on-tertiary-container": "#d8e7f2",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c2c6d4",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e1e2ea",
+                    "on-secondary-container": "#616363",
+                    "on-primary-fixed-variant": "#00468c",
+                    "inverse-surface": "#2e3037",
+                    "tertiary-container": "#5a6871",
+                    "on-primary-fixed": "#001b3d",
+                    "on-primary-container": "#dae5ff",
+                    "secondary-container": "#dfe0e0",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-dim": "#d8dae2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "xl": "32px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "container-padding": "24px"
+            },
+            "fontFamily": {
+                    "section-title": ["DM Sans"],
+                    "headline-lg": ["DM Sans"],
+                    "body-md": ["DM Sans"],
+                    "headline-lg-mobile": ["DM Sans"],
+                    "label-md": ["DM Sans"],
+                    "caption": ["DM Sans"]
+            },
+            "fontSize": {
+                    "section-title": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'DM Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e2e2; border-radius: 10px; }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Top AppBar (Mobile/Tablet Hub) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 glass-header shadow-sm flex items-center justify-between px-gutter h-16 md:hidden">
+<div class="flex items-center gap-sm">
+<button class="p-xs active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Mineral Receipts</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, professional headshot of a person wearing a business suit in a bright, modern office with soft daylight and high-end digital aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB1me_WHZBkQxsttgJLqKx72Fnu1WQEyMAaiTAxKLr7Hg_AdXtTxYTNaVWvJWxnLYz2i3WE64WWS1fjgUii4YJCuZfQ4A1FQr8JKuUiB6s1VRnfr5mrGiwFbL4gzhV98MJ4gDFIgoO4UDant4cXr8-8TgEqffVno-LmIhLdNfKOhqsxPa2oOpQ95JGKjWyBtoDyLRQMThLdnMJwOeo2jQkc0zD9LPzFn4D-MGr_oeW3vY7vSASppgO">
+</div>
+</header>
+<!-- Desktop Navigation Drawer -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-[280px] z-50 bg-surface-container-low flex-col py-lg shadow-md">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-lg text-headline-lg text-primary">Mineral Receipts</h1>
+</div>
+<nav class="flex-1">
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md mb-xs mx-sm hover:bg-surface-variant transition-all rounded-full font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md mb-xs mx-sm hover:bg-surface-variant transition-all rounded-full font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">add_notes</span>
+                New Receipt
+            </a>
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-full px-lg py-md mb-xs mx-sm font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+                Receipt History
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md mb-xs mx-sm hover:bg-surface-variant transition-all rounded-full font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-lg pt-lg mt-auto border-t border-outline-variant/30">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-primary-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of a high-end luxury watch on a wrist, representing professional success and precision timekeeping in a corporate setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYAxD1EZx7rUaQsuLondyjqk7MIhhz1-sBJcRbVNshI-Tqyfy8ZT2gSK2k_WUUAE5DA0MPPwszciH-sXrQyCAgkLUzgRhPA5nO9VsQgziLAqGGL3j_-6q5axj2-bMk3pUl4cqHimOpqUy9yBWfWlz6i-Bj93hTxG3HPdz2KrZbKR_lhH0m8HaTEF-GsUL66u8MjAz0gvDsTFGVYpUtAYk0ZKKw7xvOFMOPA19SOtSYFGK-IAX1l4xu">
+</div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md font-bold truncate">Mineral Sales Pro</p>
+<p class="text-[12px] text-outline truncate">Voucher System A437</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:pl-[280px] pt-20 md:pt-8 pb-24 md:pb-8 min-h-screen">
+<div class="max-w-6xl mx-auto px-gutter">
+<!-- Page Header & Search -->
+<div class="mb-lg space-y-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<h2 class="font-section-title text-section-title text-primary">Receipt History</h2>
+<div class="relative w-full md:w-[400px]">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-12 pl-12 pr-lg bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary-container text-body-md font-body-md placeholder-outline/60" placeholder="Search Voucher, Buyer, or Vehicle..." type="text">
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-sm overflow-x-auto pb-xs custom-scrollbar">
+<button class="px-lg h-10 rounded-full bg-primary-container text-on-primary-container text-label-md font-label-md whitespace-nowrap shadow-sm hover:opacity-90 transition-opacity">Today</button>
+<button class="px-lg h-10 rounded-full bg-surface-container-high text-on-surface-variant text-label-md font-label-md whitespace-nowrap hover:bg-surface-variant transition-colors">This Week</button>
+<button class="px-lg h-10 rounded-full bg-surface-container-high text-on-surface-variant text-label-md font-label-md whitespace-nowrap hover:bg-surface-variant transition-colors">This Month</button>
+<button class="px-lg h-10 rounded-full bg-surface-container-high text-on-surface-variant text-label-md font-label-md whitespace-nowrap hover:bg-surface-variant transition-colors">All</button>
+</div>
+</div>
+<!-- Receipt Cards List -->
+<div class="space-y-md">
+<!-- Receipt Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex flex-col md:flex-row gap-lg items-start md:items-center relative group">
+<div class="flex-1 grid grid-cols-2 md:grid-cols-5 gap-md w-full">
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Voucher #</span>
+<p class="font-label-md text-label-md text-primary font-bold">V-2024-001</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Buyer</span>
+<p class="font-label-md text-label-md truncate">Global Minerals Ltd</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Mineral Type</span>
+<p class="font-label-md text-label-md">Copper Concentrate</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Value (TZS)</span>
+<p class="font-label-md text-label-md font-bold text-on-surface">14,250,000</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Date</span>
+<p class="font-label-md text-label-md">Oct 24, 2023</p>
+</div>
+</div>
+<div class="absolute top-lg right-md md:static">
+<button class="p-sm rounded-full hover:bg-surface-variant transition-colors relative" onclick="toggleMenu(this)">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+<!-- Dropdown Menu -->
+<div class="hidden absolute right-0 top-full mt-xs w-48 bg-surface-container-lowest shadow-lg rounded-xl z-10 border border-outline-variant overflow-hidden">
+<a class="flex items-center gap-md px-lg py-md hover:bg-surface-container-high transition-colors text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined text-md">visibility</span> View
+                                </a>
+<a class="flex items-center gap-md px-lg py-md hover:bg-surface-container-high transition-colors text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined text-md text-primary">edit</span> Edit
+                                </a>
+<a class="flex items-center gap-md px-lg py-md hover:bg-surface-container-high transition-colors text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined text-md">print</span> Print
+                                </a>
+<hr class="border-outline-variant">
+<a class="flex items-center gap-md px-lg py-md hover:bg-error-container text-error transition-colors text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined text-md">delete</span> Delete
+                                </a>
+</div>
+</button>
+</div>
+</div>
+<!-- Receipt Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant/10 flex flex-col md:flex-row gap-lg items-start md:items-center relative">
+<div class="flex-1 grid grid-cols-2 md:grid-cols-5 gap-md w-full">
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Voucher #</span>
+<p class="font-label-md text-label-md text-primary font-bold">V-2024-002</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Buyer</span>
+<p class="font-label-md text-label-md truncate">East Africa Ores</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Mineral Type</span>
+<p class="font-label-md text-label-md">Gold Bullion (1kg)</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Value (TZS)</span>
+<p class="font-label-md text-label-md font-bold text-on-surface">182,400,000</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Date</span>
+<p class="font-label-md text-label-md">Oct 23, 2023</p>
+</div>
+</div>
+<div class="absolute top-lg right-md md:static">
+<button class="p-sm rounded-full hover:bg-surface-variant transition-colors" onclick="toggleMenu(this)">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Receipt Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_2px_4px_rgba(0,0,0,0.05)] border border-outline-variant/10 flex flex-col md:flex-row gap-lg items-start md:items-center relative">
+<div class="flex-1 grid grid-cols-2 md:grid-cols-5 gap-md w-full">
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Voucher #</span>
+<p class="font-label-md text-label-md text-primary font-bold">V-2024-003</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Buyer</span>
+<p class="font-label-md text-label-md truncate">Summit Mining Co.</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Mineral Type</span>
+<p class="font-label-md text-label-md">Graphite Grade A</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Value (TZS)</span>
+<p class="font-label-md text-label-md font-bold text-on-surface">8,900,000</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Date</span>
+<p class="font-label-md text-label-md">Oct 22, 2023</p>
+</div>
+</div>
+<div class="absolute top-lg right-md md:static">
+<button class="p-sm rounded-full hover:bg-surface-variant transition-colors" onclick="toggleMenu(this)">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Receipt Card 4 (With Map Concept) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col md:flex-row">
+<div class="w-full md:w-32 h-32 md:h-auto bg-surface-variant relative overflow-hidden shrink-0">
+<div class="bg-cover bg-center w-full h-full opacity-60" data-alt="A stylized digital map background with topographical lines and mineral deposit indicators, using a professional primary blue and slate grey color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8nA-tANF1g9Fb6UtMwIjLS9rtdSFm1YMPzRSoX4NA9iRsbSdrvkqN7JWrY24NYZoorEysjrGCH6awYCE8sDB7ABgNdNd_Z5-Qtkxu6G-b8LwJdiwmvBFAJbfnsoVmpeE9lMxS6ffzyzAXhsddrVY9pDtw42_Oldm_jhfet0WtR_rt0Po-VHEbvLBrc61IbwAxh2iN5J_QlhbHU4eZmlUNIo2IDYtEFEsKS4J0sxL0y1tfmC4C8K8U')"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-4xl">location_on</span>
+</div>
+</div>
+<div class="flex-1 p-lg flex flex-col md:flex-row gap-lg items-start md:items-center relative">
+<div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-md w-full">
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Voucher #</span>
+<p class="font-label-md text-label-md text-primary font-bold">V-2024-004</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Buyer</span>
+<p class="font-label-md text-label-md truncate">Blue Diamond Exp.</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Mineral Type</span>
+<p class="font-label-md text-label-md">Tantalite Ore</p>
+</div>
+<div class="space-y-xs">
+<span class="text-caption font-caption text-outline uppercase tracking-wider">Value (TZS)</span>
+<p class="font-label-md text-label-md font-bold text-on-surface">52,750,000</p>
+</div>
+</div>
+<div class="absolute top-lg right-md md:static">
+<button class="p-sm rounded-full hover:bg-surface-variant transition-colors" onclick="toggleMenu(this)">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More -->
+<div class="mt-xl flex justify-center">
+<button class="px-xl h-12 rounded-xl border border-outline-variant text-primary font-label-md text-label-md hover:bg-primary/5 transition-colors flex items-center gap-sm active:scale-95 duration-100">
+<span class="material-symbols-outlined">expand_more</span>
+                    Load More History
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-sm pb-safe bg-surface-container shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50 md:hidden rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-gutter py-xs hover:text-primary transition-colors flex-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="relative -top-6 flex items-center justify-center w-16 h-16 bg-primary-container text-on-primary-container rounded-full shadow-lg active:scale-90 transition-transform duration-200 z-10" href="#"><span class="material-symbols-outlined text-4xl">add</span></a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-gutter py-xs active:scale-90 transition-transform duration-200 flex-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-md text-label-md mt-1">History</span>
+</a>
+
+</nav>
+<script>
+        function toggleMenu(button) {
+            const menu = button.querySelector('div');
+            const isHidden = menu.classList.contains('hidden');
+            
+            // Close all other menus
+            document.querySelectorAll('button div').forEach(m => m.classList.add('hidden'));
+            
+            if (isHidden) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('button')) {
+                document.querySelectorAll('button div').forEach(m => m.classList.add('hidden'));
+            }
+        });
+    </script>
+
+
+</body></html>

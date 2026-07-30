@@ -1,0 +1,312 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Mineral Receipts - Create Receipt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#1565c0",
+                        "outline": "#727783",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#bac9d3",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-tint": "#005db7",
+                        "on-tertiary-fixed-variant": "#3b4951",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eff0f9",
+                        "primary-fixed": "#d6e3ff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#a9c7ff",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed": "#d6e5ef",
+                        "secondary": "#5d5f5f",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#424752",
+                        "surface-container-high": "#e7e8f0",
+                        "on-background": "#191c21",
+                        "surface": "#f9f9ff",
+                        "tertiary": "#425059",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary": "#004d99",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c21",
+                        "surface-container": "#ecedf6",
+                        "surface-variant": "#e1e2ea",
+                        "surface-container-low": "#f2f3fb",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-tertiary-container": "#d8e7f2",
+                        "on-tertiary-fixed": "#0f1d25",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c2c6d4",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e1e2ea",
+                        "on-secondary-container": "#616363",
+                        "on-primary-fixed-variant": "#00468c",
+                        "inverse-surface": "#2e3037",
+                        "tertiary-container": "#5a6871",
+                        "on-primary-fixed": "#001b3d",
+                        "on-primary-container": "#dae5ff",
+                        "secondary-container": "#dfe0e0",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-dim": "#d8dae2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "32px",
+                        "base": "8px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "section-title": ["DM Sans"],
+                        "headline-lg": ["DM Sans"],
+                        "body-md": ["DM Sans"],
+                        "headline-lg-mobile": ["DM Sans"],
+                        "label-md": ["DM Sans"],
+                        "caption": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "section-title": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'DM Sans', sans-serif; background-color: #f9f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .input-focus-ring:focus-within { ring: 2px solid #004d99; border-color: transparent; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #c2c6d4; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm flex items-center justify-between px-gutter h-16">
+<div class="flex items-center gap-md">
+<button class="p-xs text-primary hover:bg-surface-container-high transition-colors rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-section-title text-section-title text-primary">Create Receipt</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-[10px] text-on-primary-container font-bold">
+                MS
+            </div>
+</div>
+</header>
+<!-- Side Navigation (Desktop) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-[280px] z-40 flex-col py-lg bg-surface-container-low shadow-md">
+<div class="px-lg mb-xl">
+<div class="font-headline-lg text-primary mb-xs">Mineral Sales Pro</div>
+<div class="text-on-surface-variant font-label-md">Voucher System A437</div>
+</div>
+<nav class="flex-1">
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant transition-all rounded-full px-lg py-md mb-xs mx-sm" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-full px-lg py-md mb-xs mx-sm" href="#">
+<span class="material-symbols-outlined" data-icon="add_notes" style="font-variation-settings: 'FILL' 1;">add_notes</span>
+<span class="font-label-md">New Receipt</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant transition-all rounded-full px-lg py-md mb-xs mx-sm" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md">Receipt History</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant transition-all rounded-full px-lg py-md mb-xs mx-sm" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-lg py-md mt-auto border-t border-outline-variant flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a person in a white button-down shirt against a clean corporate office background. The lighting is soft and professional, and the image has a modern, clean light-mode aesthetic consistent with a financial application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4ds7O5oqtzPH0zwWfb_OUehAyqXzEmIUd4LmKxMBQS0hUTPq6LjzKM2K3uVbT7cGo9T98Qai29KTnDBtO_orh-lfRtiNviRpqEuRZYMF0iUo6bpl4g1pLuSUU4SbRPgZej05sr9QhfFSbP9EGRlv1lrVyt1T3NaY19NBvUgI0P0XJ3-yUPLS0BgWRPtJKpTrogE84hU0_BItFntuq4ARpO_DuzZYMPSYu_PjENjTUMbpftz3Ytpsg">
+</div>
+<div>
+<div class="font-label-md text-on-surface">Official Dealer</div>
+<div class="text-[12px] text-on-surface-variant">TZS Currency</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-16 pb-32 md:pl-[280px] min-h-screen">
+<div class="max-w-4xl mx-auto px-gutter py-lg">
+<div class="flex flex-col gap-lg">
+<!-- Header Section -->
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-on-surface">Voucher Generation</h2>
+<p class="font-body-md text-on-surface-variant">Fill in the mineral transaction details below.</p>
+</div>
+<div class="hidden md:flex flex-col items-end">
+<span class="text-caption text-outline font-bold uppercase tracking-wider">Transaction ID</span>
+<span class="font-label-md text-primary">TXN-492-001</span>
+</div>
+</div>
+<!-- Form Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] p-lg flex flex-col gap-lg">
+<!-- Section 1: Transaction Basics -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant ml-xs">Mineral Type</label>
+<div class="relative">
+<select class="w-full h-12 px-md border border-outline-variant rounded-lg bg-surface-container-low text-on-surface font-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary-container">
+<option>Gold Concentrate</option>
+<option>Raw Copper</option>
+<option>Industrial Diamond</option>
+<option>Tanzanite Grade A</option>
+<option>Rough Graphite</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant ml-xs">Voucher Number</label>
+<div class="flex items-center h-12 border border-outline-variant rounded-lg bg-surface-container-low overflow-hidden focus-within:ring-2 focus-within:ring-primary-container">
+<span class="px-md bg-surface-container-high text-on-surface-variant font-label-md h-full flex items-center border-r border-outline-variant">A437</span>
+<input class="flex-1 px-md h-full bg-transparent border-none outline-none font-body-md text-on-surface placeholder:text-outline-variant" placeholder="Enter digits" type="text">
+</div>
+</div>
+</div>
+<!-- Section 2: Valuation -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant ml-xs">Mineral Value</label>
+<div class="flex items-center h-12 border border-outline-variant rounded-lg bg-surface-container-low overflow-hidden focus-within:ring-2 focus-within:ring-primary-container">
+<span class="px-md bg-surface-container-high text-on-surface-variant font-label-md h-full flex items-center border-r border-outline-variant">TZS</span>
+<input class="flex-1 px-md h-full bg-transparent border-none outline-none font-body-md text-on-surface placeholder:text-outline-variant" placeholder="0.00" type="number">
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant ml-xs">Quantity (kg/ct)</label>
+<input class="w-full h-12 px-md border border-outline-variant rounded-lg bg-surface-container-low text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container placeholder:text-outline-variant" inputmode="numeric" placeholder="Enter amount" type="number">
+</div>
+</div>
+<div class="h-px bg-outline-variant/30 my-md"></div>
+<!-- Section 3: Transport & Logistics -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant ml-xs">Vehicle Number</label>
+<input class="w-full h-12 px-md border border-outline-variant rounded-lg bg-surface-container-low text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container placeholder:text-outline-variant" placeholder="e.g., T 123 ABC" type="text">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant ml-xs">Transport Phone</label>
+<input class="w-full h-12 px-md border border-outline-variant rounded-lg bg-surface-container-low text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container placeholder:text-outline-variant" inputmode="tel" placeholder="+255..." type="tel">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant ml-xs">Buyer Name</label>
+<input class="w-full h-12 px-md border border-outline-variant rounded-lg bg-surface-container-low text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container placeholder:text-outline-variant" placeholder="Full legal name" type="text">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant ml-xs">Destination</label>
+<input class="w-full h-12 px-md border border-outline-variant rounded-lg bg-surface-container-low text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container placeholder:text-outline-variant" placeholder="City or Delivery Point" type="text">
+</div>
+</div>
+<div class="h-px bg-outline-variant/30 my-md"></div>
+<!-- Section 4: Read-Only System Metadata (Asymmetric Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-surface-variant/20 p-md rounded-lg border border-outline-variant/50">
+<label class="font-label-md text-outline uppercase tracking-tighter text-[10px]">Production Center</label>
+<div class="font-body-md text-on-surface mt-xs">Central Mineral Hub</div>
+</div>
+<div class="bg-surface-variant/20 p-md rounded-lg border border-outline-variant/50">
+<label class="font-label-md text-outline uppercase tracking-tighter text-[10px]">Seller Name</label>
+<div class="font-body-md text-on-surface mt-xs">Official Dealer</div>
+</div>
+<div class="bg-surface-variant/20 p-md rounded-lg border border-outline-variant/50">
+<label class="font-label-md text-outline uppercase tracking-tighter text-[10px]">License Number</label>
+<div class="font-body-md text-on-surface mt-xs">LIC-2024-889</div>
+</div>
+</div>
+<div class="bg-primary-container/5 p-md rounded-lg border border-primary-container/20 flex items-center justify-between">
+<div>
+<label class="font-label-md text-primary uppercase tracking-tighter text-[10px]">Sales Date &amp; Time</label>
+<div class="font-body-md text-on-surface-variant font-bold">29 Jul 2026 14:25</div>
+</div>
+<span class="material-symbols-outlined text-primary-container" data-icon="event">event</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-between items-center h-20 px-xl pb-safe bg-surface-container dark:bg-surface-container-highest shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-gutter py-xs hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md">Home</span>
+</a>
+<div class="relative h-full flex items-center justify-center w-20">
+  <a class="absolute -top-6 w-16 h-16 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform border-4 border-surface-container" href="#">
+    <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">add</span>
+  </a>
+</div>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-gutter py-xs hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md">History</span>
+</a>
+
+</nav>
+<!-- Contextual Action Bar (Sticky/Floating Bottom) -->
+<div class="fixed bottom-0 md:left-[280px] right-0 bg-surface/80 backdrop-blur-md p-md md:px-xl md:py-lg flex flex-col md:flex-row gap-md items-center justify-end z-40 border-t border-outline-variant/30">
+<button class="w-full md:w-auto h-12 px-lg rounded-full border border-primary text-primary font-label-md hover:bg-primary/5 active:scale-95 transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+            Preview Receipt
+        </button>
+<button class="w-full md:w-auto h-12 px-xl rounded-full bg-primary text-on-primary font-section-title active:scale-95 transition-all shadow-lg shadow-primary-container/30 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+            Generate Receipt
+        </button>
+</div>
+<script>
+        // Micro-interaction for input fields
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('border-primary');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('border-primary');
+            });
+        });
+
+        // Simple button active state visual feedback
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.style.opacity = '0.8';
+            });
+            btn.addEventListener('touchend', () => {
+                btn.style.opacity = '1';
+            });
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Receipt Details | Mineral Receipts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#1565c0",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "on-secondary-container": "#616363",
+                        "surface-dim": "#d8dae2",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary": "#425059",
+                        "surface-variant": "#e1e2ea",
+                        "secondary": "#5d5f5f",
+                        "primary": "#004d99",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#5a6871",
+                        "on-tertiary-fixed-variant": "#3b4951",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f2f3fb",
+                        "on-surface": "#191c21",
+                        "surface-tint": "#005db7",
+                        "tertiary-fixed": "#d6e5ef",
+                        "inverse-primary": "#a9c7ff",
+                        "inverse-surface": "#2e3037",
+                        "surface-container": "#ecedf6",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary-fixed": "#d6e3ff",
+                        "surface": "#f9f9ff",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#00468c",
+                        "secondary-container": "#dfe0e0",
+                        "background": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e1e2ea",
+                        "surface-container-high": "#e7e8f0",
+                        "on-primary-container": "#dae5ff",
+                        "on-background": "#191c21",
+                        "inverse-on-surface": "#eff0f9",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#454747",
+                        "on-surface-variant": "#424752",
+                        "on-primary-fixed": "#001b3d",
+                        "on-tertiary-fixed": "#0f1d25",
+                        "on-tertiary-container": "#d8e7f2",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#727783",
+                        "tertiary-fixed-dim": "#bac9d3",
+                        "outline-variant": "#c2c6d4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "sm": "8px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "base": "8px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "section-title": ["DM Sans"],
+                        "headline-lg-mobile": ["DM Sans"],
+                        "headline-lg": ["DM Sans"],
+                        "label-md": ["DM Sans"],
+                        "caption": ["DM Sans"],
+                        "body-md": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "section-title": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'DM Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-shadow-l1 { shadow-[0px_2px_4px_rgba(21,101,192,0.05)] }
+        .custom-shadow-l2 { shadow-[0px_4px_12px_rgba(21,101,192,0.08)] }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface mb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm flex items-center justify-between px-gutter w-full h-16">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed hover:bg-surface-container-high transition-colors p-sm rounded-full active:scale-95 duration-100">arrow_back</button>
+<h1 class="font-section-title text-section-title text-primary dark:text-primary-fixed">Receipt Details</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a mineral specialist in a bright, modern corporate setting. The lighting is soft and high-key, emphasizing a clean and reliable professional brand aesthetic with blues and greys." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfY09ZiLf1KTAUjZhZtbWQa74hTvEkq0UTyjYQ8NYApCcM6ZTm1QS3UhoNVd9zjvxSLMbdBe-YQt9TCNOvIehVgD3H004T48uzhasuchutj64HWxb0IcbEOvjinkabk51CzGBj_zebwpKYYqqJhzFzEWjbWlJ-48ssn7N-s9MdIDuXmQ6VpKK1S1rqh9ayd3E9XhaaEEMU8KVIguQL8UJF7JboOxvmTdfKr3SqXmZBKzX9FsdYuRRn"/>
+</div>
+</header>
+<main class="pt-20 px-gutter max-w-4xl mx-auto space-y-gutter pb-32">
+<!-- Header Status Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Voucher Number</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">V-2024-001</h2>
+</div>
+<div class="mt-sm md:mt-0">
+<span class="inline-flex items-center px-lg py-sm bg-primary-container/10 text-primary font-bold text-caption rounded-full border border-primary-container/20">
+<span class="material-symbols-outlined text-sm mr-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    GENERATED
+                </span>
+</div>
+</div>
+<!-- Bento Grid Layout for Details -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Primary Information Card (Bento Large) -->
+<section class="md:col-span-7 bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_12px_rgba(21,101,192,0.08)] flex flex-col gap-lg">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">description</span>
+<h3 class="font-section-title text-section-title">Primary Information</h3>
+</div>
+<div class="grid grid-cols-2 gap-y-lg gap-x-md">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Buyer</p>
+<p class="font-body-md text-body-md font-bold">Global Minerals Ltd</p>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Date &amp; Time</p>
+<p class="font-body-md text-body-md">24 Oct 2023 10:30</p>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Mineral Type</p>
+<p class="font-body-md text-body-md text-primary font-bold">Copper Concentrate</p>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Quantity</p>
+<p class="font-body-md text-body-md">1,250 kg</p>
+</div>
+<div class="col-span-2 pt-md border-t border-outline-variant">
+<p class="font-label-md text-label-md text-on-surface-variant">Mineral Value</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-primary">TZS 14,250,000</p>
+</div>
+</div>
+</section>
+<!-- Logistics Section (Bento Small) -->
+<section class="md:col-span-5 bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-lg">
+<div class="flex items-center gap-sm text-tertiary">
+<span class="material-symbols-outlined">local_shipping</span>
+<h3 class="font-section-title text-section-title">Logistics</h3>
+</div>
+<div class="space-y-md">
+<div class="flex justify-between items-center py-xs border-b border-outline-variant/20">
+<span class="font-label-md text-label-md text-on-surface-variant">Vehicle</span>
+<span class="font-body-md text-body-md font-medium">T 123 ABC</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-outline-variant/20">
+<span class="font-label-md text-label-md text-on-surface-variant">Phone</span>
+<span class="font-body-md text-body-md">+255 744 555 123</span>
+</div>
+<div class="flex flex-col py-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Destination</span>
+<span class="font-body-md text-body-md font-medium text-tertiary">Dar es Salaam Port</span>
+</div>
+</div>
+</section>
+<!-- Authority Section (Bento Bottom) -->
+<section class="md:col-span-12 bg-surface-container-low p-lg rounded-xl flex flex-col md:flex-row gap-lg justify-between border-l-4 border-primary shadow-sm">
+<div class="flex gap-md items-start">
+<span class="material-symbols-outlined text-primary-container mt-1">verified_user</span>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase">Production Center</h3>
+<p class="font-body-md text-body-md font-bold">Central Mineral Hub</p>
+</div>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase">Authorized Seller</h3>
+<p class="font-body-md text-body-md">Official Dealer</p>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase">License</h3>
+<p class="font-body-md text-body-md font-medium">LIC-2024-889</p>
+</div>
+</section>
+</div>
+<!-- QR Verification Section -->
+<div class="flex flex-col items-center justify-center py-xl space-y-md">
+<div class="bg-white p-lg rounded-xl shadow-lg border border-outline-variant/40">
+<img class="w-32 h-32 md:w-40 md:h-40" data-alt="A clean, minimalist QR code centered on a white card background. The aesthetic is sharp and professional, utilizing the Mineral Receipts app palette of deep blue and crisp white for the code patterns, symbolizing secure digital verification." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAocOMq_wOu_iIzu5btQiik2i--fxuTgezv3sBMxfDc12JcxYLOsqBoKejWzB54oRxhGxhbuRSf-46b0e8MvU2vvL_KDHoXkEkmk25uD_09LHNiD9B_vF3ukbKFlL-3jGI19LODSwEpl_aRd1HiBW-XFzxHjEgWrhEQiiNgHkcHJuYg2cu-0FrEmcbBeu9TVhK6qptI8gG-M81WvFy6BOrDakA-fa-du4L6x4bklvmQuwFg3hrKqjpw"/>
+</div>
+<p class="font-caption text-caption text-on-surface-variant text-center max-w-xs">
+                Scan this code to verify the authenticity of this digital mineral receipt via the official government portal.
+            </p>
+</div>
+</main>
+<!-- Bottom Action Bar (Fixed) -->
+<div class="fixed bottom-20 left-0 w-full bg-surface-container-highest/80 backdrop-blur-md px-gutter py-md flex gap-md items-center justify-center z-40 border-t border-outline-variant/30">
+<button class="flex-1 max-w-[120px] h-12 border border-primary text-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-xs hover:bg-primary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+            Edit
+        </button>
+<button class="flex-[2] max-w-[240px] h-12 bg-primary text-on-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-sm shadow-md hover:shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">print</span>
+            Print Receipt
+        </button>
+<button class="p-sm text-error hover:bg-error-container/10 rounded-full active:scale-90 transition-all">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-sm pb-safe bg-surface-container dark:bg-surface-container-highest shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50 rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-gutter py-xs hover:text-primary transition-colors cursor-pointer active:scale-90 duration-200">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-gutter py-xs hover:text-primary transition-colors cursor-pointer active:scale-90 duration-200">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-label-md">New</span>
+</div>
+<!-- Active Tab: History -->
+<div class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed text-on-primary-container dark:text-on-primary-fixed-variant rounded-full px-gutter py-xs active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-md text-label-md">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-gutter py-xs hover:text-primary transition-colors cursor-pointer active:scale-90 duration-200">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Haptic feedback simulation
+                if (window.navigator.vibrate) window.navigator.vibrate(5);
+            });
+        });
+    </script>
+</body></html>

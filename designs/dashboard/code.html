@@ -1,0 +1,403 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Mineral Receipts Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#1565c0",
+                        "outline": "#727783",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#bac9d3",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-tint": "#005db7",
+                        "on-tertiary-fixed-variant": "#3b4951",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eff0f9",
+                        "primary-fixed": "#d6e3ff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#a9c7ff",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed": "#d6e5ef",
+                        "secondary": "#5d5f5f",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#424752",
+                        "surface-container-high": "#e7e8f0",
+                        "on-background": "#191c21",
+                        "surface": "#f9f9ff",
+                        "tertiary": "#425059",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary": "#004d99",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c21",
+                        "surface-container": "#ecedf6",
+                        "surface-variant": "#e1e2ea",
+                        "surface-container-low": "#f2f3fb",
+                        "primary-fixed-dim": "#a9c7ff",
+                        "on-tertiary-container": "#d8e7f2",
+                        "on-tertiary-fixed": "#0f1d25",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c2c6d4",
+                        "surface-container-low": "#f2f3fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e1e2ea",
+                        "on-secondary-container": "#616363",
+                        "on-primary-fixed-variant": "#00468c",
+                        "inverse-surface": "#2e3037",
+                        "tertiary-container": "#5a6871",
+                        "on-primary-fixed": "#001b3d",
+                        "on-primary-container": "#dae5ff",
+                        "secondary-container": "#dfe0e0",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-dim": "#d8dae2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "32px",
+                        "base": "8px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "section-title": ["DM Sans"],
+                        "headline-lg": ["DM Sans"],
+                        "body-md": ["DM Sans"],
+                        "headline-lg-mobile": ["DM Sans"],
+                        "label-md": ["DM Sans"],
+                        "caption": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "section-title": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm flex items-center justify-between px-gutter h-16 md:px-lg">
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">Mineral Receipts</h1>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold border-2 border-surface">
+                US
+            </div>
+</div>
+</header>
+<!-- Navigation Drawer (Desktop Only) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-[280px] z-40 bg-surface-container-low shadow-md flex-col py-lg pt-24">
+<div class="px-lg mb-lg">
+<div class="flex items-center gap-md mb-xs">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">Mineral Sales Pro</p>
+<p class="text-xs text-on-surface-variant">Voucher System A437</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-xs px-sm">
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-full px-lg py-md transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-full px-lg py-md transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="add_notes">add_notes</span>
+<span class="font-label-md text-label-md">New Receipt</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-full px-lg py-md transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md">Receipt History</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:bg-surface-variant rounded-full px-lg py-md transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="pt-20 pb-32 md:ml-[280px] px-gutter md:px-lg min-h-screen">
+<!-- Welcome Section / Dashboard Stats -->
+<section class="mt-lg grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+<div class="bg-primary text-on-primary p-lg rounded-xl shadow-lg relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl" data-icon="payments">payments</span>
+</div>
+<p class="font-label-md text-label-md opacity-80 mb-xs">Daily Turnover</p>
+<p class="font-headline-lg text-headline-lg">TZS 12.4M</p>
+<div class="mt-md flex items-center gap-xs text-xs bg-white/10 w-fit px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+<span class="">+14% vs yesterday</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Active Buyers</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">24</p>
+<div class="mt-md flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-primary-fixed"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-tertiary-fixed"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-secondary-fixed"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-outline flex items-center justify-center text-[10px] text-white">+21</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30 flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">System Health</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">Stable</p>
+<p class="text-xs text-on-surface-variant">Sync: 2 mins ago</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center animate-pulse">
+<div class="w-4 h-4 rounded-full bg-green-600"></div>
+</div>
+</div>
+</section>
+<!-- New Receipt FAB (Center Aligned Logic for Dashboard) -->
+<div class="flex justify-center mb-xl">
+<button class="bg-primary-container text-on-primary-container px-lg py-md rounded-full shadow-lg hover:shadow-xl active:scale-95 transition-all flex items-center gap-md group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform" data-icon="add">add</span>
+<span class="font-section-title text-section-title">New Receipt</span>
+</button>
+</div>
+<!-- Recent Receipts Section -->
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-section-title text-section-title text-on-surface">Recent Receipts</h2>
+<button class="text-primary font-label-md text-label-md flex items-center gap-xs">
+                View All
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-md">
+<!-- Receipt Card 1 -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow flex items-center gap-md relative group">
+<div class="hidden md:flex w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="diamond">diamond</span>
+</div>
+<div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-md items-center">
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">A437001</p>
+<p class="font-body-md text-body-md text-on-surface truncate">John Doe</p>
+</div>
+<div>
+<span class="px-xs py-0.5 rounded bg-tertiary-fixed text-[10px] font-bold text-on-tertiary-fixed tracking-wider uppercase">Gold</span>
+<p class="font-caption text-caption text-on-surface-variant mt-1">29 Jul 2026</p>
+</div>
+<div class="hidden md:block">
+<p class="font-label-md text-label-md text-on-surface">TZS 150,000</p>
+<p class="text-xs text-on-surface-variant">0.45 grams</p>
+</div>
+<div class="text-right md:hidden">
+<p class="font-label-md text-label-md text-on-surface">TZS 150k</p>
+</div>
+<div class="hidden md:flex justify-end">
+<span class="px-sm py-1 rounded-full bg-green-50 text-green-700 text-[10px] font-bold uppercase border border-green-200">Finalized</span>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors shrink-0">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Receipt Card 2 -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow flex items-center gap-md relative group">
+<div class="hidden md:flex w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="hexagon">hexagon</span>
+</div>
+<div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-md items-center">
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">A437002</p>
+<p class="font-body-md text-body-md text-on-surface truncate">Alice Mwangi</p>
+</div>
+<div>
+<span class="px-xs py-0.5 rounded bg-secondary-fixed text-[10px] font-bold text-on-secondary-fixed tracking-wider uppercase">Copper</span>
+<p class="font-caption text-caption text-on-surface-variant mt-1">28 Jul 2026</p>
+</div>
+<div class="hidden md:block">
+<p class="font-label-md text-label-md text-on-surface">TZS 85,400</p>
+<p class="text-xs text-on-surface-variant">12.2 kg</p>
+</div>
+<div class="text-right md:hidden">
+<p class="font-label-md text-label-md text-on-surface">TZS 85.4k</p>
+</div>
+<div class="hidden md:flex justify-end">
+<span class="px-sm py-1 rounded-full bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase border border-yellow-200">Pending</span>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors shrink-0">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Receipt Card 3 -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow flex items-center gap-md relative group">
+<div class="hidden md:flex w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="water_drop">water_drop</span>
+</div>
+<div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-md items-center">
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">A437003</p>
+<p class="font-body-md text-body-md text-on-surface truncate">Bakari Hassan</p>
+</div>
+<div>
+<span class="px-xs py-0.5 rounded bg-blue-100 text-[10px] font-bold text-blue-800 tracking-wider uppercase">Tanzanite</span>
+<p class="font-caption text-caption text-on-surface-variant mt-1">28 Jul 2026</p>
+</div>
+<div class="hidden md:block">
+<p class="font-label-md text-label-md text-on-surface">TZS 3,450,000</p>
+<p class="text-xs text-on-surface-variant">2.1 carats</p>
+</div>
+<div class="text-right md:hidden">
+<p class="font-label-md text-label-md text-on-surface">TZS 3.4M</p>
+</div>
+<div class="hidden md:flex justify-end">
+<span class="px-sm py-1 rounded-full bg-green-50 text-green-700 text-[10px] font-bold uppercase border border-green-200">Finalized</span>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors shrink-0">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Receipt Card 4 -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow flex items-center gap-md relative group">
+<div class="hidden md:flex w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="diamond">diamond</span>
+</div>
+<div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-md items-center">
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">A437004</p>
+<p class="font-body-md text-body-md text-on-surface truncate">Sarah James</p>
+</div>
+<div>
+<span class="px-xs py-0.5 rounded bg-tertiary-fixed text-[10px] font-bold text-on-tertiary-fixed tracking-wider uppercase">Gold</span>
+<p class="font-caption text-caption text-on-surface-variant mt-1">27 Jul 2026</p>
+</div>
+<div class="hidden md:block">
+<p class="font-label-md text-label-md text-on-surface">TZS 420,000</p>
+<p class="text-xs text-on-surface-variant">1.2 grams</p>
+</div>
+<div class="text-right md:hidden">
+<p class="font-label-md text-label-md text-on-surface">TZS 420k</p>
+</div>
+<div class="hidden md:flex justify-end">
+<span class="px-sm py-1 rounded-full bg-red-50 text-red-700 text-[10px] font-bold uppercase border border-red-200">Cancelled</span>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors shrink-0">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Receipt Card 5 -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow flex items-center gap-md relative group">
+<div class="hidden md:flex w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="layers">layers</span>
+</div>
+<div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-md items-center">
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">A437005</p>
+<p class="font-body-md text-body-md text-on-surface truncate">Musa Ibrahim</p>
+</div>
+<div>
+<span class="px-xs py-0.5 rounded bg-orange-100 text-[10px] font-bold text-orange-800 tracking-wider uppercase">Iron Ore</span>
+<p class="font-caption text-caption text-on-surface-variant mt-1">27 Jul 2026</p>
+</div>
+<div class="hidden md:block">
+<p class="font-label-md text-label-md text-on-surface">TZS 210,000</p>
+<p class="text-xs text-on-surface-variant">450 kg</p>
+</div>
+<div class="text-right md:hidden">
+<p class="font-label-md text-label-md text-on-surface">TZS 210k</p>
+</div>
+<div class="hidden md:flex justify-end">
+<span class="px-sm py-1 rounded-full bg-green-50 text-green-700 text-[10px] font-bold uppercase border border-green-200">Finalized</span>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors shrink-0">
+<span class="material-symbols-outlined text-outline" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Quick Insights Section (Asymmetric / Bento Grid) -->
+<section class="mt-xl grid grid-cols-1 md:grid-cols-12 gap-md">
+<div class="md:col-span-8 bg-surface-container-low p-lg rounded-xl flex flex-col justify-between min-h-[200px]">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-md">Sales Distribution</h3>
+<div class="flex items-end gap-xs h-32">
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[40%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t-sm h-[70%]"></div>
+<div class="flex-1 bg-primary/80 rounded-t-sm h-[90%]"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-[60%]"></div>
+<div class="flex-1 bg-primary/50 rounded-t-sm h-[30%]"></div>
+<div class="flex-1 bg-primary/70 rounded-t-sm h-[80%]"></div>
+<div class="flex-1 bg-primary/90 rounded-t-sm h-[50%]"></div>
+</div>
+</div>
+<div class="flex justify-between mt-md border-t border-outline-variant/30 pt-md text-xs text-on-surface-variant">
+<span class="">Mon</span><span class="">Tue</span><span class="">Wed</span><span class="">Thu</span><span class="">Fri</span><span class="">Sat</span><span class="">Sun</span>
+</div>
+</div>
+<div class="md:col-span-4 bg-primary-fixed p-lg rounded-xl flex flex-col justify-center">
+<span class="material-symbols-outlined text-4xl text-on-primary-fixed mb-md" data-icon="verified">verified</span>
+<h3 class="font-section-title text-section-title text-on-primary-fixed mb-xs">Audit Ready</h3>
+<p class="text-sm text-on-primary-fixed-variant leading-relaxed">All receipts are digitally signed and timestamped according to Tanzanian mining regulations.</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-sm pb-safe bg-surface-container shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50 rounded-t-xl"><a class="flex flex-col items-center justify-center text-on-surface-variant px-gutter py-xs hover:text-primary transition-transform active:scale-90 duration-200" href="#"><span class="material-symbols-outlined" data-icon="home">home</span><span class="font-label-md text-label-md">Home</span></a><div class="relative -top-4"><a class="flex items-center justify-center w-14 h-14 bg-primary-container text-on-primary-container rounded-full shadow-lg active:scale-95 transition-transform duration-200" href="#"><span class="material-symbols-outlined text-2xl" data-icon="add">add</span></a></div><a class="flex flex-col items-center justify-center text-on-surface-variant px-gutter py-xs hover:text-primary transition-transform active:scale-90 duration-200" href="#"><span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span><span class="font-label-md text-label-md">History</span></a></nav>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', (e) => {
+                // Potential ripples or logic here
+            });
+        });
+
+        // Theme toggle simulation or other interactions can be added here
+    </script>
+
+
+</body></html>
