@@ -107,7 +107,7 @@ class _CreateReceiptScreenState extends State<CreateReceiptScreen> {
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.02),
+                        color: Colors.black.withValues(alpha: 0.02),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),
@@ -119,7 +119,7 @@ class _CreateReceiptScreenState extends State<CreateReceiptScreen> {
                       const Text('Mineral Type', style: labelStyle),
                       const SizedBox(height: 6),
                       DropdownButtonFormField<String>(
-                        value: _selectedMineral,
+                        initialValue: _selectedMineral,
                         decoration: _inputDecoration(),
                         icon: const Icon(
                           Icons.keyboard_arrow_down,
@@ -310,6 +310,33 @@ class _CreateReceiptScreenState extends State<CreateReceiptScreen> {
                     ],
                   ),
                 ),
+                // Preview Receipt Button
+                Center(
+                  child: OutlinedButton.icon(
+                    onPressed: () {
+                      // Action for receipt preview
+                    },
+                    icon: const Icon(Icons.remove_red_eye_outlined, size: 18),
+                    label: const Text(
+                      'Preview Receipt',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: primaryColor,
+                      side: const BorderSide(color: primaryColor, width: 1.5),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 20),
               ],
             ),
@@ -320,8 +347,18 @@ class _CreateReceiptScreenState extends State<CreateReceiptScreen> {
   }
 
   static const List<String> _months = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 
   String _formatTimestamp(DateTime dt) {
