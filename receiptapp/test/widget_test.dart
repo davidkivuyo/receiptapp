@@ -5,24 +5,26 @@ import 'package:receiptapp/main.dart';
 
 void main() {
   testWidgets('App renders with title', (WidgetTester tester) async {
-    await tester.pumpWidget(const MineralReceiptsApp());
+    await tester.pumpWidget(const MainWrapper());
 
     expect(find.text('Mineral Receipts'), findsOneWidget);
     expect(find.text('TZS 12.4M'), findsOneWidget);
   });
 
-  testWidgets('Shows New Receipt button and Recent Receipts header',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const MineralReceiptsApp());
+  testWidgets('Shows New Receipt button and Recent Receipts header', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MainWrapper());
 
     expect(find.text('New Receipt'), findsOneWidget);
     expect(find.text('Recent Receipts'), findsOneWidget);
     expect(find.text('View All'), findsOneWidget);
   });
 
-  testWidgets('Renders all receipt cards with correct data',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const MineralReceiptsApp());
+  testWidgets('Renders all receipt cards with correct data', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MainWrapper());
 
     expect(find.text('A437001'), findsOneWidget);
     expect(find.text('John Doe'), findsOneWidget);
@@ -41,9 +43,10 @@ void main() {
     expect(find.text('TZS 210k'), findsOneWidget);
   });
 
-  testWidgets('Bottom navigation bar renders with tabs',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const MineralReceiptsApp());
+  testWidgets('Bottom navigation bar renders with tabs', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MainWrapper());
 
     expect(find.text('Home'), findsOneWidget);
     expect(find.text('History'), findsOneWidget);
@@ -52,9 +55,10 @@ void main() {
     expect(find.byIcon(Icons.add), findsWidgets);
   });
 
-  testWidgets('Tapping History nav item updates active state',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const MineralReceiptsApp());
+  testWidgets('Tapping History nav item updates active state', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MainWrapper());
 
     await tester.tap(find.text('History'));
     await tester.pumpAndSettle();
@@ -63,7 +67,7 @@ void main() {
   });
 
   testWidgets('Center add button is tappable', (WidgetTester tester) async {
-    await tester.pumpWidget(const MineralReceiptsApp());
+    await tester.pumpWidget(const MainWrapper());
 
     await tester.tap(find.byIcon(Icons.add).last);
     await tester.pump();
@@ -71,9 +75,10 @@ void main() {
     expect(find.text('Mineral Receipts'), findsOneWidget);
   });
 
-  testWidgets('Each receipt card shows more options icon and tags',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const MineralReceiptsApp());
+  testWidgets('Each receipt card shows more options icon and tags', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MainWrapper());
 
     expect(find.byIcon(Icons.more_vert), findsNWidgets(5));
     expect(find.text('GOLD'), findsWidgets);
@@ -82,9 +87,8 @@ void main() {
     expect(find.text('IRON ORE'), findsOneWidget);
   });
 
-  testWidgets('Receipt cards show correct dates',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const MineralReceiptsApp());
+  testWidgets('Receipt cards show correct dates', (WidgetTester tester) async {
+    await tester.pumpWidget(const MainWrapper());
 
     expect(find.text('29 Jul 2026'), findsOneWidget);
     expect(find.text('28 Jul 2026'), findsWidgets);

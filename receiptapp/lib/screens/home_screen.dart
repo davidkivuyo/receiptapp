@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:receiptapp/screens/create_receipt_screen.dart';
 import '../navigation/bottom_nav_bar.dart';
 
 // Data model for Recent Receipt Card
@@ -154,7 +155,14 @@ class _HomeScreenState extends State<HomeScreen> {
             // New Receipt Button
             Center(
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CreateReceiptScreen(),
+                    ),
+                  );
+                },
                 icon: const Icon(Icons.add, color: Colors.white),
                 label: const Text(
                   'New Receipt',
@@ -238,7 +246,10 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         onNewReceiptTap: () {
-          // Action for the center action button
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreateReceiptScreen()),
+          );
         },
       ),
     );
