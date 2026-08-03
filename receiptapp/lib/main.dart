@@ -1,42 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:receiptapp/navigation/bottom_nav_bar.dart';
-import 'package:receiptapp/screens/create_receipt_screen.dart';
-import 'package:receiptapp/screens/home_screen.dart';
+import 'navigation/main_wraper.dart'; // Make sure to import your wrapper file
 
-class MainWrapper extends StatefulWidget {
-  const MainWrapper({super.key});
-
-  @override
-  State<MainWrapper> createState() => _MainWrapperState();
+void main() {
+  runApp(const MineralReceiptsApp());
 }
 
-class _MainWrapperState extends State<MainWrapper> {
-  int _currentIndex = 0;
-
-  // List of screens for bottom navigation
-  final List<Widget> _screens = [
-    const HomeScreen(),
-    const Center(child: Text("History Screen")), // Placeholder for History
-    const CreateReceiptScreen(),
-  ];
+class MineralReceiptsApp extends StatelessWidget {
+  const MineralReceiptsApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(index: _currentIndex, children: _screens),
-      bottomNavigationBar: AppBottomNavigationBar(
-        currentIndex: _currentIndex == 2 ? -1 : _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        onNewReceiptTap: () {
-          setState(() {
-            _currentIndex = 2; // Index 2 points to CreateReceiptScreen
-          });
-        },
+    return MaterialApp(
+      title: 'Mineral Receipts',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFF8FAFC),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0F57A6)),
+        useMaterial3: true,
       ),
+      // Set MainWrapper as the home screen here:
+      home: const MainWrapper(),
     );
   }
 }

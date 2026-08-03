@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:receiptapp/screens/create_receipt_screen.dart';
-import '../navigation/bottom_nav_bar.dart';
 
 // Data model for Recent Receipt Card
 class ReceiptItem {
@@ -24,15 +22,15 @@ class ReceiptItem {
 }
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final VoidCallback onNewReceiptTap;
+
+  const HomeScreen({super.key, required this.onNewReceiptTap});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentNavIndex = 0;
-
   final List<ReceiptItem> _receipts = [
     ReceiptItem(
       id: 'A437001',
@@ -83,175 +81,164 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFF8FAFC),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.menu, color: Color(0xFF0F57A6)),
-          onPressed: () {},
-        ),
-        title: const Text(
-          'Mineral Receipts',
-          style: TextStyle(
-            color: Color(0xFF0F57A6),
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
+    return Column(
+      children: [
+        // App Bar
+        AppBar(
+          backgroundColor: const Color(0xFFF8FAFC),
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.menu, color: Color(0xFF0F57A6)),
+            onPressed: () {},
           ),
+          title: const Text(
+            'Mineral Receipts',
+            style: TextStyle(
+              color: Color(0xFF0F57A6),
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+          centerTitle: false,
         ),
-        centerTitle: false,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Daily Turnover Card
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: const Color(0xFF0052B4),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    right: 0,
-                    top: 0,
-                    child: Icon(
-                      Icons.account_balance_wallet,
-                      size: 60,
-                      color: Colors.white.withValues(alpha: 0.12),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Daily Turnover',
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.8),
-                          fontSize: 14,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'TZS 12.4M',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
 
-            // New Receipt Button
-            Center(
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CreateReceiptScreen(),
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.add, color: Colors.white),
-                label: const Text(
-                  'New Receipt',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0F57A6),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 12,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  elevation: 2,
-                ),
-              ),
+        // Screen Body Content
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 8.0,
             ),
-            const SizedBox(height: 24),
-
-            // Header Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Recent Receipts',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                // Daily Turnover Card
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF0052B4),
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Row(
+                  child: Stack(
                     children: [
-                      Text(
-                        'View All',
-                        style: TextStyle(
-                          color: Color(0xFF0F57A6),
-                          fontWeight: FontWeight.w600,
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        child: Icon(
+                          Icons.account_balance_wallet,
+                          size: 60,
+                          color: Colors.white.withValues(alpha: 0.12),
                         ),
                       ),
-                      SizedBox(width: 4),
-                      Icon(
-                        Icons.arrow_forward,
-                        size: 16,
-                        color: Color(0xFF0F57A6),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Daily Turnover',
+                            style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.8),
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'TZS 12.4M',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+                const SizedBox(height: 16),
+
+                // New Receipt Button
+                Center(
+                  child: ElevatedButton.icon(
+                    onPressed: widget.onNewReceiptTap,
+                    icon: const Icon(Icons.add, color: Colors.white),
+                    label: const Text(
+                      'New Receipt',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0F57A6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      elevation: 2,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Header Row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Recent Receipts',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Row(
+                        children: [
+                          Text(
+                            'View All',
+                            style: TextStyle(
+                              color: Color(0xFF0F57A6),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(width: 4),
+                          Icon(
+                            Icons.arrow_forward,
+                            size: 16,
+                            color: Color(0xFF0F57A6),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+
+                // Receipts List
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _receipts.length,
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 10),
+                  itemBuilder: (context, index) {
+                    final item = _receipts[index];
+                    return _buildReceiptCard(item);
+                  },
+                ),
+                const SizedBox(height: 20),
               ],
             ),
-            const SizedBox(height: 8),
-
-            // Receipts List
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: _receipts.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 10),
-              itemBuilder: (context, index) {
-                final item = _receipts[index];
-                return _buildReceiptCard(item);
-              },
-            ),
-            const SizedBox(height: 20),
-          ],
+          ),
         ),
-      ),
-      bottomNavigationBar: AppBottomNavigationBar(
-        currentIndex: _currentNavIndex,
-        onTap: (index) {
-          setState(() {
-            _currentNavIndex = index;
-          });
-        },
-        onNewReceiptTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CreateReceiptScreen()),
-          );
-        },
-      ),
+      ],
     );
   }
 
@@ -276,7 +263,6 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ID & Name
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -295,8 +281,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-
-              // Tag & Date
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -338,8 +322,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           const SizedBox(height: 8),
-
-          // Amount
           Text(
             item.amount,
             style: const TextStyle(

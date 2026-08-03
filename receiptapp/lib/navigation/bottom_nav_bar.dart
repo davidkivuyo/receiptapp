@@ -20,7 +20,6 @@ class AppBottomNavigationBar extends StatelessWidget {
         border: Border(top: BorderSide(color: Colors.grey.shade200, width: 1)),
       ),
       child: SafeArea(
-        top: false,
         child: SizedBox(
           height: 65,
           child: Row(
@@ -57,7 +56,7 @@ class AppBottomNavigationBar extends StatelessWidget {
                 ),
               ),
 
-              // Center Floating Action Button
+              // Center Action Button (Create Receipt Trigger)
               GestureDetector(
                 onTap: onNewReceiptTap,
                 child: Container(
