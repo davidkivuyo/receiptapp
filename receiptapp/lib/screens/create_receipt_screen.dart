@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:receiptapp/screens/verify_receipt_screen.dart';
 
 class CreateReceiptScreen extends StatefulWidget {
   const CreateReceiptScreen({super.key});
@@ -314,7 +315,12 @@ class _CreateReceiptScreenState extends State<CreateReceiptScreen> {
                 Center(
                   child: OutlinedButton.icon(
                     onPressed: () {
-                      // Action for receipt preview
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VerifyReceiptScreen(),
+                        ),
+                      );
                     },
                     icon: const Icon(Icons.remove_red_eye_outlined, size: 18),
                     label: const Text(
