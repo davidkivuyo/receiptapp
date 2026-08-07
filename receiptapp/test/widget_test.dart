@@ -66,13 +66,16 @@ void main() {
     expect(find.text('History'), findsOneWidget);
   });
 
-  testWidgets('Center add button is tappable', (WidgetTester tester) async {
+  testWidgets('Center add button opens Create Receipt screen', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(const MineralReceiptsApp());
 
     await tester.tap(find.byIcon(Icons.add).last);
     await tester.pump();
 
-    expect(find.text('Mineral Receipts'), findsOneWidget);
+    expect(find.text('Create Receipt'), findsOneWidget);
+    expect(find.text('Mineral Receipts'), findsNothing);
   });
 
   testWidgets('Each receipt card shows more options icon and tags', (

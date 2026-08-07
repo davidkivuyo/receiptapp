@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../screens/home_screen.dart';
 import '../screens/create_receipt_screen.dart';
+import '../screens/receipt_history.dart';
+import '../screens/receipt_details.dart';
 import 'bottom_nav_bar.dart';
 
 class MainWrapper extends StatefulWidget {
@@ -24,7 +26,16 @@ class _MainWrapperState extends State<MainWrapper> {
     // List of screens for bottom navigation
     final List<Widget> screens = [
       HomeScreen(onNewReceiptTap: _goToNewReceipt),
-      const Center(child: Text("History Screen")), // Placeholder for History
+      ReceiptHistoryScreen(
+        onReceiptTap: (receipt) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ReceiptDetailsScreen(receipt: receipt),
+            ),
+          );
+        },
+      ),
       const CreateReceiptScreen(),
     ];
 
