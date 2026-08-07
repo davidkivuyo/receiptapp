@@ -2,6 +2,7 @@
 
 * add firebase firestore database
 
+* add a login screen but the registration isonly via the console
 
 * Do not present this QR code as authenticity verification.
 
