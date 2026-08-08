@@ -64,8 +64,7 @@ Use:
 
 * firebase_core
 * cloud_firestore
-
-Authentication is NOT required.
+* firebase Authentication
 
 There will be one Firestore database.
 
